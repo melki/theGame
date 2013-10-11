@@ -1,0 +1,81 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html,
+body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+	background-color:#A2A2A2; 
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	/* Negative indent footer by its height */
+  margin: 0 auto -60px;
+  /* Pad bottom by footer height */
+  padding: 0 0 60px;
+}
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+#wrap > .container {
+  padding: 60px 15px 0;
+}
+.container .credit {
+  margin: 20px 0;
+}
+
+#footer > .container {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+code {
+  font-size: 80%;
+}
+
+#canvas {
+	
+	display:block; 
+	background:#fff;
+	cursor:crosshair;
+	position :relative;
+}
+
+#couleurs {
+	list-style:none; 
+	margin:0 0 20px 0; 
+	padding:0
+}
+#largeur_pinceau
+{
+		-webkit-appearance: slider-vertical;
+		width: 20px;
+		height: 100px;
+		background:blue;
+}
+
+#couleurs a {
+	display:inline-block; 
+	width:24px; 
+	height:24px; 
+	margin-right:10px; 
+	text-indent:-4000px; 
+	overflow:hidden; 
+	border-radius:50%
+}
+
+#reset
+{border-radius: 20%;}
+
+#couleurs a.actif {
+	border:2px solid #000; 
+	width:24px; 
+	height:24px
+}
+

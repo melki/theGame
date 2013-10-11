@@ -1,0 +1,54 @@
+extends layout          
+block content 
+      .container
+        .row
+          .col-md-1
+          
+            p.btn.btn-success(id="reset") Reset
+            br
+            br
+            ul#couleurs
+              li
+                a.actif(href='#', data-couleur='#000000') Noir
+              li
+                a(href='#', data-couleur='#ffffff') Blanc
+              li
+                a(href='#', data-couleur='#ff0000') Rouge
+              li
+                a(href='#', data-couleur='brown') Marron
+              li
+                a(href='#', data-couleur='orange') Orange
+              li
+                a(href='#', data-couleur='yellow') Jaune
+              li
+                a(href='#', data-couleur='green') Vert
+              li
+                a(href='#', data-couleur='cyan') Cyan
+              li
+                a(href='#', data-couleur='blue') Bleu
+              li
+                a(href='#', data-couleur='indigo') Indigo
+              li
+                a(href='#', data-couleur='Violet') Violet
+              li
+                a(href='#', data-couleur='pink') Rose
+              form#largeurs_pinceau
+                input#largeur_pinceau(type='range', min='2', max='50', value='5')
+                br
+          .col-md-11
+            canvas#canvas(width='1000px', height='550px')
+          //
+    
+          #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+            .modal-dialog
+              .modal-content
+                .modal-header
+                  button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+                  h4.modal-title Delete everything
+                .modal-body
+                  | Are you sure ? It will reset the board for every body !
+                .modal-footer
+                  button.btn.btn-default(type='button', data-dismiss='modal') No, I want to go back
+                  button.btn.btn-primary(type='button',id="confirm") Yes, I'm pretty sure
+             
+          

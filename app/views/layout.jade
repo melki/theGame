@@ -1,0 +1,30 @@
+!!! 5
+html(lang='en')
+head
+    title oPaint 0.0.1
+    meta(charset='utf-8')
+    meta(name='author', content='@melki')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='')   
+    link(rel='stylesheet', href='/lib/bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/custom.css', type='text/css')
+    script(type='text/javascript', src='/js/jquery.js')
+    script(type='text/javascript', src='/js/oPAint.js')
+    script(src='/lib/bootstrap/js/bootstrap.min.js')
+    script(src='/socket.io/socket.io.js')  
+   
+  body
+    #wrap
+      .navbar.navbar-default.navbar-fixed-top
+        .container
+          .navbar-header
+            button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            a.navbar-brand(href='#',id='project') oPaint
+          .collapse.navbar-collapse
+            ul.nav.navbar-nav
+              li.active
+                a(href='/home') Home
+      block content
