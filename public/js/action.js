@@ -68,32 +68,32 @@ $(document).ready(function() {
     {
       for(i=0;i<=data.length;i++)
       {
-         if(data[i][6]===0)
+    if(data[i][6]===0)
       {
          context.beginPath();
          context.arc(data[i][2], data[i][3], data[i][1]/2, 0, 2 * Math.PI, false);
          context.fillStyle = data[i][0];
          context.fill();
-        
          
       }
-       else if (!data[i][4])
-        {
-          // Je place mon curseur pour la première fois :
-          context.beginPath();
-          context.moveTo(data[i][2], data[i][3]);
-          
-        }
-        // Sinon je dessine
-        else
-        {
+      if(!data[i][4]){oldPostionX[data[i][5]]=null;}
+      if(!oldPostionX[data[i][5]])
+      {
+        context.beginPath();  
+        oldPostionX[data[i][5]]=data[i][2];
+        oldPostionX[data[i][5]]=data[i][3];
+      }
+      else
+      {
+        context.moveTo(oldPostionX[data[i][5]], oldPostionY[data[i][5]]);
+        context.lineTo(data[i][2], data[i][3]);
+        context.strokeStyle = data[i][0];
+        context.lineWidth = data[i][1];
+        context.stroke();
+        oldPostionX[data[i][5]]=data[i][2];
+        oldPostionX[data[i][5]]=data[i][3];
 
-          context.lineTo(data[i][2], data[i][3]);
-          context.strokeStyle = data[i][0];
-          context.lineWidth = data[i][1];
-          context.stroke();
-
-        }
+      }
 
       }   
     });
