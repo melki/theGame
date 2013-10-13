@@ -35,7 +35,7 @@ $(document).ready(function() {
 
     socket.on('newPoint', function (data)
     { 
-      if(data[6]==0)
+      if(data[6]===0)
       {
          context.beginPath();
          context.arc(data[2], data[3], data[1]/2, 0, 2 * Math.PI, false);
@@ -68,7 +68,16 @@ $(document).ready(function() {
     {
       for(i=0;i<=data.length;i++)
       {
-        if (!data[i][4])
+         if(data[i][6]===0)
+      {
+         context.beginPath();
+         context.arc(data[i][2], data[i][3], data[i][1]/2, 0, 2 * Math.PI, false);
+         context.fillStyle = data[i][0];
+         context.fill();
+        
+         
+      }
+       else if (!data[i][4])
         {
           // Je place mon curseur pour la première fois :
           context.beginPath();
@@ -83,6 +92,7 @@ $(document).ready(function() {
           context.strokeStyle = data[i][0];
           context.lineWidth = data[i][1];
           context.stroke();
+
         }
 
       }   
