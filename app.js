@@ -11,7 +11,7 @@ var express = require('express'),
   path = require('path');
 var app = express();
 // all environments
-app.set('port', process.env.PORT || 80);
+app.set('port', process.env.PORT || 5000);
 app.set('views', __dirname + '/app/views');
 app.set('view engine', 'jade');
 app.use(express.logger('dev'));
@@ -45,7 +45,7 @@ io.sockets.on('connection', function (socket) {
     {
       
       socket.broadcast.emit('newPoint',data);
-      
+
       buffer[count]=data;
       
       count += 1;

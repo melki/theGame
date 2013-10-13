@@ -7,6 +7,10 @@
     "express": "3.x",
     "socket.io": "0.9.16",
      "jade": "0.33.0",
-    "mongoose": "3.6.15"
+    
+  },
+   "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
   }
 }
