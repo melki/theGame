@@ -174,7 +174,7 @@ $(document).ready(function() {
       cursorX = (e.pageX -  $(targ).offset().left) - 1;
       cursorY = (e.pageY -  $(targ).offset().top) - 1;
       // Dessine une ligne :
-     
+      context.closePath();
       drawLine();
     }
   });
