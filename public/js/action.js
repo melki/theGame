@@ -141,6 +141,7 @@ $(document).ready(function() {
   $(this).mouseup(function() {
      if(painting===true && oneClick===0)
      {
+      context.closePath();
       sendInfo(0);
       context.beginPath();
       context.arc(cursorX, cursorY, width_brush/2, 0, 2 * Math.PI, false);
