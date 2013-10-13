@@ -183,6 +183,7 @@ $(document).ready(function() {
     }
     // Sinon je dessine
     else {
+      context.beginPath();
       context.moveTo(oldX, oldY);
       context.lineTo(cursorX, cursorY);
       context.strokeStyle = color;
