@@ -118,7 +118,7 @@ $(document).ready(function() {
   // Click souris enfoncé sur le canvas, je dessine :
   canvas.mousedown(function(e) {
     oneClick=0;
-
+    context.closePath();
     painting = true;
     var targ;
     if (!e)
@@ -147,6 +147,7 @@ $(document).ready(function() {
       context.arc(cursorX, cursorY, width_brush/2, 0, 2 * Math.PI, false);
       context.fillStyle = color;
       context.fill();
+      context.closePath();
      
     }
     painting = false;
