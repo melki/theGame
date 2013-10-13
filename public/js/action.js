@@ -146,7 +146,7 @@ $(document).ready(function() {
       context.arc(cursorX, cursorY, width_brush/2, 0, 2 * Math.PI, false);
       context.fillStyle = color;
       context.fill();
-      context.closePath();
+     
     }
     painting = false;
     started = false;
