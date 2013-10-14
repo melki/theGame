@@ -222,7 +222,7 @@ $(document).ready(function() {
       // Et les classes CSS :
       $("#couleurs a").removeAttr("class", "");
       $(this).attr("class", "actif");
-      
+      $("#couleurs").hide(); 
       return false;
     });
   });
@@ -238,6 +238,9 @@ $(document).ready(function() {
   // Bouton Reset :
   $("#reset").click(function() {
     $('#myModal').modal('show');
+  });
+  $("#dropColor").click(function() {
+    $('#couleurs').show();
   });
 
   
