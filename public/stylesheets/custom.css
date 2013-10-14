@@ -55,11 +55,24 @@ code {
 	background-color: #C0C0C0;
 	padding:0
 }
+#largeur_pinceau
+{
+	height: 1px;
+}
+#largeurs_pinceau
+{
+		
+		padding : auto;
+		margin : 0px;
+		min-height: 0px;
+		
+}
 
 #couleurs a {
 	width:20px; 
 	height:20px; 
 	margin: 5px;
+	line-height: 0px;
 	
 }
 
