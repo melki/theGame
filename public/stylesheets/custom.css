@@ -46,10 +46,13 @@ code {
 	cursor:crosshair;
 	position :relative;
 }
-
+#dropColor
+{
+	background-color: black;
+}
 #couleurs {
 	list-style:none; 
-	margin:0 0 20px 0; 
+	background-color: #C0C0C0;
 	padding:0
 }
 #largeur_pinceau
@@ -61,21 +64,17 @@ code {
 }
 
 #couleurs a {
-	display:inline-block; 
-	width:24px; 
-	height:24px; 
-	margin-right:10px; 
-	text-indent:-4000px; 
-	overflow:hidden; 
-	border-radius:50%
+	width:20px; 
+	height:20px; 
+	margin: 5px;
+	
 }
 
+.dropdown-menu {
+  min-width: 0px;
+}
 #reset
 {border-radius: 20%;}
 
-#couleurs a.actif {
-	border:2px solid #000; 
-	width:24px; 
-	height:24px
-}
+
 

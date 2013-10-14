@@ -27,4 +27,34 @@ head
             ul.nav.navbar-nav
               li.active
                 a(href='/home') Home
+              li
+                a(href='#', id='reset') Reset
+              li.dropdown
+                a(data-toggle='dropdown',id="dropColor", href='#') Color
+                ul.dropdown-menu(id="couleurs",role='menu', aria-labelledby='dLabel')
+                  li
+                    a(href='#', data-couleur='#000000') 
+                  li
+                    a(href='#', data-couleur='#ffffff') 
+                  li
+                    a(href='#', data-couleur='#ff0000') 
+                  li
+                    a(href='#', data-couleur='brown') 
+                  li
+                    a(href='#', data-couleur='orange') 
+                  li
+                    a(href='#', data-couleur='yellow') 
+                  li
+                    a(href='#', data-couleur='green') 
+                  li
+                    a(href='#', data-couleur='cyan') 
+                  li
+                    a(href='#', data-couleur='blue') 
+                  li
+                    a(href='#', data-couleur='indigo') 
+                  li
+                    a(href='#', data-couleur='Violet') 
+                  li
+                    a(href='#', data-couleur='pink') 
+
       block content

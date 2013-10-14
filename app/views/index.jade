@@ -4,37 +4,10 @@ block content
         .row
           .col-md-1
           
-            p.btn.btn-success(id="reset") Reset
-            br
-            br
-            ul#couleurs
-              li
-                a.actif(href='#', data-couleur='#000000') Noir
-              li
-                a(href='#', data-couleur='#ffffff') Blanc
-              li
-                a(href='#', data-couleur='#ff0000') Rouge
-              li
-                a(href='#', data-couleur='brown') Marron
-              li
-                a(href='#', data-couleur='orange') Orange
-              li
-                a(href='#', data-couleur='yellow') Jaune
-              li
-                a(href='#', data-couleur='green') Vert
-              li
-                a(href='#', data-couleur='cyan') Cyan
-              li
-                a(href='#', data-couleur='blue') Bleu
-              li
-                a(href='#', data-couleur='indigo') Indigo
-              li
-                a(href='#', data-couleur='Violet') Violet
-              li
-                a(href='#', data-couleur='pink') Rose
-              form#largeurs_pinceau
-                input#largeur_pinceau(type='range', min='2', max='50', value='5')
-                br
+           
+            form#largeurs_pinceau
+              input#largeur_pinceau(type='range', min='2', max='50', value='5')
+              br
           .col-md-11
             canvas#canvas(width='1000px', height='550px')
           //

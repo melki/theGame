@@ -218,7 +218,7 @@ $(document).ready(function() {
     $(this).click(function() {
       // Je change la couleur du pinceau :
       color = $(this).attr("data-couleur");
-      
+      $('#dropColor').css("background-color", color);
       // Et les classes CSS :
       $("#couleurs a").removeAttr("class", "");
       $(this).attr("class", "actif");
@@ -239,6 +239,7 @@ $(document).ready(function() {
   $("#reset").click(function() {
     $('#myModal').modal('show');
   });
+
   
   $("#confirm").click(function() {
     socket.emit('reset');
