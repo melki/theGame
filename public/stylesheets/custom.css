@@ -55,13 +55,6 @@ code {
 	background-color: #C0C0C0;
 	padding:0
 }
-#largeur_pinceau
-{
-		-webkit-appearance: slider-vertical;
-		width: 20px;
-		height: 100px;
-		background:blue;
-}
 
 #couleurs a {
 	width:20px; 
