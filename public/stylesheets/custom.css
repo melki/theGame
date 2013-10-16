@@ -41,13 +41,20 @@ code {
   font-size: 80%;
 }
 
-#canvas {
+canvas {
 	
 	display:block; 
 	background:#fff;
 	cursor:crosshair;
+	position: absolute;
 	
 }
+#canvas1,#canvas2
+{
+	
+	background-color: rgba(255,255,255,0); 
+} 
+
 #dropColor
 {
 	background-color: black;

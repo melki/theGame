@@ -6,10 +6,14 @@ $(document).ready(function() {
   var started = false;
   var width_brush = 5;
   var oneClick=0;
-  var canvas = $("#canvas");
+  var canvas0 = $("#canvas0");
+  var canvas1 = $("#canvas1");
+  var canvas2 = $("#canvas2");
   var cursorX, cursorY,oldX,oldY;
   var context = new Array();
-  context[0] = canvas[0].getContext('2d');
+  context[0] = canvas0[0].getContext('2d');
+  context[1] = canvas1[0].getContext('2d');
+  context[2] = canvas2[0].getContext('2d');
   //context[0].canvas.width  = window.innerWidth;
   //context[0].canvas.height = window.innerHeight;
   var socket = io.connect();
@@ -27,9 +31,20 @@ $(document).ready(function() {
        $("#largeur_pinceau").attr("value", 5);
        width_brush = 5;
     });
+      
       socket.on('id', function (data)
     {
-      id=data;
+      id=data-1;
+      if(data>3)
+      {
+        window.location='/error';
+      }
+    
+    });
+
+      socket.on('clients', function (data)
+    {
+      $('#project').text("n° "+(id+1)+"/"+data );
       
     
     });
@@ -117,7 +132,7 @@ $(document).ready(function() {
   }
 
   // Click souris enfoncé sur le canvas, je dessine :
-  canvas.mousedown(function(e) {
+  canvas2.mousedown(function(e) {
     oneClick=0;
     context[0].closePath();
     painting = true;
@@ -142,13 +157,13 @@ $(document).ready(function() {
   $(this).mouseup(function() {
      if(painting===true && oneClick===0)
      {
-      context[0].closePath();
+      context[id].closePath();
       sendInfo(0);
-      context[0].beginPath();
-      context[0].arc(cursorX, cursorY, width_brush/2, 0, 2 * Math.PI, false);
-      context[0].fillStyle = color;
-      context[0].fill();
-      context[0].closePath();
+      context[id].beginPath();
+      context[id].arc(cursorX, cursorY, width_brush/2, 0, 2 * Math.PI, false);
+      context[id].fillStyle = color;
+      context[id].fill();
+      context[id].closePath();
      
     }
     painting = false;
@@ -157,7 +172,7 @@ $(document).ready(function() {
   
 
   // Mouvement de la souris sur le canvas :
-  canvas.mousemove(function(e) {
+  canvas2.mousemove(function(e) {
     // Si je suis en train de dessiner (click souris enfoncé) :
     if (painting) {
       // Set Coordonnées de la souris :
@@ -177,7 +192,7 @@ $(document).ready(function() {
       cursorX = (e.pageX -  $(targ).offset().left) - 1;
       cursorY = (e.pageY -  $(targ).offset().top) - 1;
       // Dessine une ligne :
-      context[0].closePath();
+      context[id].closePath();
       drawLine();
     }
   });
@@ -189,25 +204,28 @@ $(document).ready(function() {
     // Si c'est le début, j'initialise
     if (!started) {
       // Je place mon curseur pour la première fois :
-      context[0].beginPath();
-      context[0].moveTo(cursorX, cursorY);
+      context[id].beginPath();
+      context[id].moveTo(cursorX, cursorY);
       started = true;
 
     }
     // Sinon je dessine
     else {
-      context[0].beginPath();
-      context[0].moveTo(oldX, oldY);
-      context[0].lineTo(cursorX, cursorY);
-      context[0].strokeStyle = color;
-      context[0].lineWidth = width_brush;
-      context[0].stroke();
+      context[id].beginPath();
+      context[id].moveTo(oldX, oldY);
+      context[id].lineTo(cursorX, cursorY);
+      context[id].strokeStyle = color;
+      context[id].lineWidth = width_brush;
+      context[id].stroke();
     }
   }
   
   // Clear du Canvas :
   function clear_canvas() {
-    context[0].clearRect(0,0, canvas.width(), canvas.height());
+    for (var i = 0; i < 3; i++) {
+      
+    context[i].clearRect(0,0, canvas2.width(), canvas2.height());
+    };
   }
   
   // Pour chaque carré de couleur :

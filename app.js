@@ -25,6 +25,7 @@ var count = 0;
 var nbClient = 0;
 app.get('/', routes.index);
 app.get('/home', routes.index);
+app.get('/error', routes.error);
 
 
 
@@ -40,7 +41,8 @@ io.sockets.on('connection', function (socket) {
     nbClient++;
     socket.emit("oldStuff",buffer);
     socket.emit("id",nbClient);
-    console.log("clients :"+ clients);
+    socket.emit("clients", nbClient);
+    socket.broadcast.emit("clients", nbClient);
     socket.on('infoPoint', function (data)
     {
       
@@ -58,4 +60,9 @@ io.sockets.on('connection', function (socket) {
       socket.broadcast.emit('reset');
     });
 
+socket.on('disconnect', function() { 
+    nbClient--; 
+    socket.emit("clients", nbClient);
+    socket.broadcast.emit("clients", nbClient);
+  });
 });
