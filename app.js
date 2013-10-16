@@ -34,13 +34,13 @@ var server = http.createServer(app).listen(app.get('port'), function(){
 
 
 var io = require('socket.io').listen(server);
-
+var clients = io.sockets.clients();
 
 io.sockets.on('connection', function (socket) {
     nbClient++;
     socket.emit("oldStuff",buffer);
     socket.emit("id",nbClient);
-
+    console.log("clients :"+ clients);
     socket.on('infoPoint', function (data)
     {
       
