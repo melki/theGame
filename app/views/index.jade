@@ -1,22 +1,7 @@
-extends layout          
-block content 
-      .container
-         
-            canvas#canvas0(width='1000px', height='550px')
-            canvas#canvas1(width='1000px', height='550px')
-            canvas#canvas2(width='1000px', height='550px')
-        
+extends layout
+block content  
     
-          #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
-            .modal-dialog
-              .modal-content
-                .modal-header
-                  button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
-                  h4.modal-title Delete everything
-                .modal-body
-                  | Are you sure ? It will reset the board for every body !
-                .modal-footer
-                  button.btn.btn-default(type='button', data-dismiss='modal') No, I want to go back
-                  button.btn.btn-primary(type='button',id="confirm") Yes, I'm pretty sure
-             
-          
+    h1 Welcome
+    p theGame is a litle game I made.
+    p Enjoy and do not hesitate share this page.
+    a(href="http://github.com/melki") @melki

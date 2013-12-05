@@ -11,8 +11,15 @@ var fs = require('fs');
 
 
 exports.index = function(req, res){
-  res.render('index');
+  
+  res.render('index', { title: 'Home' });
 };
-exports.error = function(req, res){
-  res.render('error');
+
+exports.scores = function(req, res){
+  res.render('scores', { title: 'Scores' });
+};
+
+exports.thegame = function(req, res){
+
+  res.render('thegame', { title: 'theGame' });
 };

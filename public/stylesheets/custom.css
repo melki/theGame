@@ -1,95 +1,94 @@
-/* Sticky footer styles
--------------------------------------------------- */
-
-html,
+/* Space out content a bit */
 body {
-  height: 100%;
-  /* The html and body elements cannot have any padding or margin. */
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
-/* Wrapper for page content to push down footer */
-#wrap {
-	background-color:#A2A2A2; 
-	min-height: 100%;
-	height: auto !important;
-	height: 100%;
-	text-align: center;
-	/* Negative indent footer by its height */
-  margin: 0 auto -60px;
-  /* Pad bottom by footer height */
-  padding: 0 0 60px;
-}
-
-/* Custom page CSS
--------------------------------------------------- */
-/* Not required for template or sticky footer method. */
-
-#wrap > .container {
- text-align: center;
-  padding: 60px 15px 0;
-}
-.container .credit {
-  margin: 20px 0;
-}
-
-#footer > .container {
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
   padding-left: 15px;
   padding-right: 15px;
 }
 
-code {
-  font-size: 80%;
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+}
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+  padding-bottom: 19px;
 }
 
-canvas {
-	
-	display:block; 
-	background:#fff;
-	cursor:crosshair;
-	position: absolute;
-	
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
 }
-#canvas1,#canvas2
+
+/* Customize container */
+@media (min-width: 800px) {
+  .container {
+    max-width: 800px;
+  }
+}
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+.jumbotron .btn {
+  font-size: 21px;
+  padding: 14px 24px;
+}
+
+/* Supporting marketing content */
+.marketing {
+  margin: 40px 0;
+}
+.marketing p + h4 {
+  margin-top: 28px;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 800px) {
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
+canvas
 {
-	
-	background-color: rgba(255,255,255,0); 
-} 
+        /*background-color: #407D84;*/
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 30px;
 
-#dropColor
+}
+
+#whereItHappens
 {
-	background-color: black;
+  margin-bottom: 20 px;
+  padding-bottom: 20 px;
+  text-align: center;
 }
-#couleurs {
-	list-style:none; 
-	background-color: #C0C0C0;
-	padding:0
-}
-#largeur_pinceau
-{
-	height: 1px;
-}
-#largeurs_pinceau
-{
-		
-		padding : auto;
-		margin : 0px;
-		min-height: 0px;
-		
-}
-
-#couleurs a {
-	width:20px; 
-	height:20px; 
-	margin: 5px;
-	line-height: 0px;
-	
-}
-
-.dropdown-menu {
-  min-width: 0px;
-}
-#reset
-{border-radius: 20%;}
-
-
-

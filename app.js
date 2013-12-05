@@ -18,51 +18,33 @@ app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
+
 app.use(express.static(path.join(__dirname, 'public')));
-var buffer = new Array();
-var mongoose = require( 'mongoose' );
-var count = 0;
-var nbClient = 0;
+
+
 app.get('/', routes.index);
+app.get('/index', routes.index);
 app.get('/home', routes.index);
-app.get('/error', routes.error);
+app.get('/thegame', routes.thegame);
+app.get('/scores', routes.scores);
 
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/thetest');
 
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function callback () {
+  console.log('it works');
+  var scoreSchema = mongoose.Schema({
+    pseudo : String,
+    tries : int,
+    date : {type: Date, default: Date.now} 
+  })
+  var Scores = mongoose.model('Scores', scoreSchema)
+
+});
 
 var server = http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
-
-var io = require('socket.io').listen(server);
-var clients = io.sockets.clients();
-
-io.sockets.on('connection', function (socket) {
-    nbClient++;
-    socket.emit("oldStuff",buffer);
-    socket.emit("id",nbClient);
-    socket.emit("clients", nbClient);
-    socket.broadcast.emit("clients", nbClient);
-    socket.on('infoPoint', function (data)
-    {
-      
-      socket.broadcast.emit('newPoint',data);
-
-      buffer[count]=data;
-      
-      count += 1;
-    });
-    
-    socket.on('reset', function (data)
-    {
-      buffer = new Array();
-      count = 0;
-      socket.broadcast.emit('reset');
-    });
-
-socket.on('disconnect', function() { 
-    nbClient--; 
-    socket.emit("clients", nbClient);
-    socket.broadcast.emit("clients", nbClient);
-  });
-});

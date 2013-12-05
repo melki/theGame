@@ -1,66 +1,41 @@
 !!! 5
 html(lang='en')
 head
-    title oPaint 0.0.1
     meta(charset='utf-8')
-    meta(name='author', content='@melki')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    meta(name='description', content='')   
+    meta(name='description', content='A hard core game !')
+    meta(name='author', content='@melki')
+    link(rel="icon", href="../images/ico.ico")
+    script(type='text/javascript', src='../js/jquery.js')
+    link(rel='shortcut icon', href='../images/ico.ico')
+    title theGame | #{title}
+    script(src='../lib/bootstrap/js/bootstrap.min.js')
     link(rel='stylesheet', href='../lib/bootstrap/css/bootstrap.min.css')
     link(rel='stylesheet', href='../stylesheets/custom.css', type='text/css')
-    script(type='text/javascript', src='../js/jquery.js')
-    script(type='text/javascript', src='../js/action.js')
-    script(type='text/javascript', src='../js/anal.js')
-    script(src='../lib/bootstrap/js/bootstrap.min.js')
-    script(src='../socket.io/socket.io.js')  
-   
-  body
-    #wrap
-      .navbar.navbar-default.navbar-fixed-top
-        .container
-          .navbar-header
-            button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
-              span.icon-bar
-              span.icon-bar
-              span.icon-bar
-            a.navbar-brand(href='#',id='project') oPaint
-          .collapse.navbar-collapse
-            ul.nav.navbar-nav
-              li.active
-                a(href='/home') Home
-              li
-                a(href='#', id='reset') Reset
-              li.dropdown#drop
-                a(data-toggle='dropdown',id="dropColor", href='#') Color
-                ul.dropdown-menu(id="couleurs",role='menu', aria-labelledby='dLabel')
-                  li
-                    a(href='#', data-couleur='#000000') 
-                  li
-                    a(href='#', data-couleur='#ffffff') 
-                  li
-                    a(href='#', data-couleur='#ff0000') 
-                  li
-                    a(href='#', data-couleur='brown') 
-                  li
-                    a(href='#', data-couleur='orange') 
-                  li
-                    a(href='#', data-couleur='yellow') 
-                  li
-                    a(href='#', data-couleur='green') 
-                  li
-                    a(href='#', data-couleur='cyan') 
-                  li
-                    a(href='#', data-couleur='blue') 
-                  li
-                    a(href='#', data-couleur='indigo') 
-                  li
-                    a(href='#', data-couleur='Violet') 
-                  li
-                    a(href='#', data-couleur='pink')
-              li 
-                a#largeurs_pinceau
-                  form
-                    input#largeur_pinceau(type='range', min='2', max='50', value='5')  
-
-
+    body
+    .container
+      .header
+        ul.nav.nav-pills.pull-right
+         - if(title=='Home')
+            li.active
+              a(href='/home') Home
+          -else
+            li
+              a(href='/home') Home
+          - if(title=='theGame')
+            li.active
+              a(href='/thegame') theGame
+          -else
+            li
+              a(href='/thegame') theGame
+          - if(title=='Scores')
+            li.active
+              a(href='/scores') Scores
+          -else
+            li
+              a(href='/scores') Scores
+        h3.text-muted theGame
       block content
+
+    
