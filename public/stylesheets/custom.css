@@ -92,3 +92,15 @@ canvas
   padding-bottom: 20 px;
   text-align: center;
 }
+table thead th
+{
+  text-align: center;
+
+}
+#upload
+{
+  visibility:hidden;
+  margin-bottom: 20 px;
+  padding-bottom: 20 px;
+  text-align: center;
+}

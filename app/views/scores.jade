@@ -1,4 +1,21 @@
 extends layout
 block content  
-	.jumbotron
-		h1 News are always the same
+	#whereItHappens
+		table.table.table-striped
+			thead
+				tr
+					th #
+					th Pseudo
+					th Number of tries
+					th Date
+			tbody
+			- var i = 0
+			- var date	
+			each item in data
+				- i+=1
+				- date = f.formatDate(item.date);
+				tr
+					td #{i} 
+					td #{item.pseudo}
+					td #{item.tries}
+					td #{date}

@@ -1,4 +1,8 @@
+
 function load() {
+var socket = io.connect();
+
+
 
 
     // fonction servant à animer le tout (mieux que setIntervalle)
@@ -24,6 +28,8 @@ var cube,nbLvl,inJump,i,j,boom=0,play=0,gameEnd=1;
 var c1 = new Array();
 var c2 = new Array();
 var speed = new Array();
+var orderLvl = new Array();
+var orderColor = new Array();
 var nbObstacles = new Array();
 var obstacles = new Array();
 var gravity = new Array();
@@ -100,6 +106,7 @@ $.getJSON('../json/lvl.json', function(data)
         }
         
     };
+    reOrdonate()
     animate();
 });
 
@@ -116,18 +123,18 @@ function animate()
             if(creation!=1)
                 {
                     creation=1;
-                    createCube(sol[lvl],c1[lvl],speed[lvl]);
+                    createCube(sol[orderLvl[lvl]],c1[orderLvl[orderColor[lvl]]],speed[orderLvl[lvl]]);
                 }
             clearCanvas(ctx);
             moveCube();
-            drawBackground(ciel[lvl],sol[lvl],c1[lvl],c2[lvl]);
-            drawCube(c2[lvl]);
-            if (nbObstacles[lvl]!=0)
+            drawBackground(ciel[orderLvl[lvl]],sol[orderLvl[lvl]],c1[orderLvl[orderColor[lvl]]],c2[orderLvl[orderColor[lvl]]]);
+            drawCube(c2[orderLvl[orderColor[lvl]]]);
+            if (nbObstacles[orderLvl[lvl]]!=0)
             {
-                drawObstacles(obstacles[lvl],nbObstacles[lvl]);
-                collisionsObstacles(obstacles[lvl],nbObstacles[lvl]);
+                drawObstacles(obstacles[orderLvl[lvl]],nbObstacles[orderLvl[lvl]]);
+                collisionsObstacles(obstacles[orderLvl[lvl]],nbObstacles[orderLvl[lvl]]);
             }
-            collisionsPastille(obstacles[lvl],nbObstacles[lvl]);
+            collisionsPastille(obstacles[orderLvl[lvl]],nbObstacles[orderLvl[lvl]]);
             collisionsCiel();
             testArrive();
             infos();
@@ -135,10 +142,10 @@ function animate()
         if (boom==1)
         {
             clearCanvas(ctx);
-            drawBackground(ciel[lvl],sol[lvl],c1[lvl],c2[lvl]);
-            if (nbObstacles[lvl]!=0)
+            drawBackground(ciel[orderLvl[lvl]],sol[orderLvl[lvl]],c1[orderLvl[orderColor[lvl]]],c2[orderLvl[orderColor[lvl]]]);
+            if (nbObstacles[orderLvl[lvl]]!=0)
             {
-                drawObstacles(obstacles[lvl],nbObstacles[lvl]);
+                drawObstacles(obstacles[orderLvl[lvl]],nbObstacles[orderLvl[lvl]]);
             }
             explosion();
             infos();
@@ -149,7 +156,7 @@ function animate()
 
 function collisionsCiel()
 {
-    if(cube.posY<=ciel[lvl])
+    if(cube.posY<=ciel[orderLvl[lvl]])
     {
         avantExplosion();
     }
@@ -169,6 +176,7 @@ function collisionsObstacles(obstacles,nb)
 function collisionsPastille(obstacles,nb)
 {
     for (i = 0; i < nb; i++) 
+    
     {
         if (obstacles[i].pastilleActuel!=0)
         {
@@ -179,6 +187,36 @@ function collisionsPastille(obstacles,nb)
             }
         }
     }
+}
+
+function reOrdonate()
+{
+    for (var i = 0; i < nbLvl; i++) {
+        orderLvl[i]=i
+        orderColor[i]=i
+    };
+    orderLvl.shuffle();
+    orderColor.shuffle();
+}
+
+function randomInt(mini, maxi)
+{
+     var nb = mini + (maxi+1-mini)*Math.random();
+     return Math.floor(nb);
+}
+ 
+Array.prototype.shuffle = function(n)
+{
+     if(!n)
+          n = this.length;
+     if(n > 1)
+     {
+          var i = randomInt(0, n-1);
+          var tmp = this[i];
+          this[i] = this[n-1];
+          this[n-1] = tmp;
+          this.shuffle(n-1);
+     }
 }
 
 function avantExplosion()
@@ -214,7 +252,7 @@ function explosion()
         debris[j].posY+=Math.random()*20-10;
     };
     for (j = 0; j < 16; j++) {
-        ctx.fillStyle = c2[lvl];
+        ctx.fillStyle = c2[orderLvl[orderColor[lvl]]];
         ctx.fillRect(debris[j].posX,debris[j].posY,5,5);
     };
        
@@ -222,7 +260,7 @@ function explosion()
 
 function infos()
 {
-    ctx.fillStyle = c1[lvl];
+    ctx.fillStyle = c1[orderLvl[orderColor[lvl]]];
     ctx.font = "20px Tahoma,Calibri,Geneva,Arial";
     ctx.fillText('Tries : '+ nbTry, 20, 20);
 }
@@ -231,19 +269,19 @@ function createCube(sol,c1,speed)
 {
     frame=0;
     inJump=0;
-    for (i = 0; i < nbObstacles[lvl]; i++) {
+    for (i = 0; i < nbObstacles[orderLvl[lvl]]; i++) {
         stopX[i]=1;
         stopY[i]=1;
     };
-    for (i = 0; i < nbObstacles[lvl]; i++) {
-        if (obstacles[lvl][i].pastille!=0)
+    for (i = 0; i < nbObstacles[orderLvl[lvl]]; i++) {
+        if (obstacles[orderLvl[lvl]][i].pastille!=0)
         {
-            obstacles[lvl][i].pastilleActuel=obstacles[lvl][i].pastille;
+            obstacles[orderLvl[lvl]][i].pastilleActuel=obstacles[orderLvl[lvl]][i].pastille;
         }
-        if (obstacles[lvl][i].oneShot==0)
+        if (obstacles[orderLvl[lvl]][i].oneShot==0)
         {
-            obstacles[lvl][i].posX=obstacles[lvl][i].posX1;
-            obstacles[lvl][i].posY=obstacles[lvl][i].posY1;
+            obstacles[orderLvl[lvl]][i].posX=obstacles[orderLvl[lvl]][i].posX1;
+            obstacles[orderLvl[lvl]][i].posY=obstacles[orderLvl[lvl]][i].posY1;
         }
 
     }
@@ -270,7 +308,7 @@ function drawObstacles(obstacles,nb)
     for (i = 0; i < nb; i++)
     {
 
-        ctx.fillStyle = c2[lvl];
+        ctx.fillStyle = c2[orderLvl[orderColor[lvl]]];
         ctx.fillRect(obstacles[i].posX,obstacles[i].posY,obstacles[i].width,obstacles[i].height);
        if(obstacles[i].oneShot!=0)
        {
@@ -308,7 +346,7 @@ function drawObstacles(obstacles,nb)
         if (obstacles[i].pastilleActuel!=0)
         {
             ctx.beginPath();
-            ctx.fillStyle = c2[lvl];
+            ctx.fillStyle = c2[orderLvl[orderColor[lvl]]];
             ctx.arc(obstacles[i].pastilleX, obstacles[i].pastilleY, 5, 0, 2 * Math.PI);
             ctx.closePath();
             ctx.fill();
@@ -323,14 +361,14 @@ function moveCube()
     cube.posX+=cube.dx;
     cube.posY+=cube.dy;
     // Gravity
-    if (cube.posY<sol[lvl]-20)
+    if (cube.posY<sol[orderLvl[lvl]]-20)
     {
         inJump=1;
-        cube.dy+=gravity[lvl];
+        cube.dy+=gravity[orderLvl[lvl]];
     }
-    if (cube.posY>=sol[lvl]-20)
+    if (cube.posY>=sol[orderLvl[lvl]]-20)
     {
-        cube.posY=sol[lvl]-20;
+        cube.posY=sol[orderLvl[lvl]]-20;
         inJump=0;
         cube.dy=0;
     }
@@ -342,7 +380,7 @@ function jump()
     if (inJump==0)
     {
         inJump=1;
-        cube.dy=-speed[lvl]*baseSpeed*2;
+        cube.dy=-speed[orderLvl[lvl]]*baseSpeed*2;
     }
     
     
@@ -350,7 +388,7 @@ function jump()
 
 function drawCube(c2)
 {
-    ctx.fillStyle = c2[lvl];
+    ctx.fillStyle = c2[orderLvl[orderColor[lvl]]];
     if (inJump==0)
     {
 
@@ -374,18 +412,26 @@ function testArrive()
     if(lvl>=nbLvl)
     {
         gameEnd=0;
-        var div = document.getElementById('whereItHappens');
-        var inner = "<br><br><p>Well done, only "+nbTry+" tries !</p>"+
-        "<p>Now, enter your pseudo and then click on <code>submit</code></p>"+
-        "<form role='form' action='pages/score' method='POST'><div>"+
-            "<input type='text' class='form-control' name='pseudo' id='inputPseudo' placeholder='Pseudo'><br>";
-        inner+=  "<button type='submit' class='btn btn-success'>Submit</button> ";
-            
-            
+        $('#whereItHappens').text('');
+        $('#upload').css('visibility','visible');
+        $('#tries').text(nbTry);
+        $(document).ready(function() {
+      
+        $("#send").click(function() {
+       
+        var data = new Array();
+        data[0]=nbTry;
+        data[1]=$("#inputPseudo").val();
+
+        socket.emit('newscore',data)
+      
+
+       
+    });
+    });
+
         
-        inner+="</div></form>";
-        div.innerHTML = inner;
-    }    
+    }  
 }
 
 function clearCanvas(ctx) 
@@ -422,6 +468,9 @@ function keydownControl(e)
         return false;
     }
     }
+
+
+
 
 
 }

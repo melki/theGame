@@ -10,6 +10,18 @@ block content
 		| Use
 		code(name='canvas') enter
 		|	to play or to pause the game.
-	
+	div(id='upload')
+		p
+		| Well done, only 
+		span#tries 
+		|  tries !
+		p
+		| Now, enter your pseudo and then click on 
+		code submit
+		br
+		form(role="form",method='get',action="scores")
+			div.form-group
+				input(type='text', class='form-control', id='inputPseudo', placeholder='Pseudo')
+			button(id='send',type="submit", class='btn btn-success') Submit
 	
 	script(type='text/javascript', src='../js/thegame.js')	
