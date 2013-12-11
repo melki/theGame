@@ -19,8 +19,9 @@ block content
 		| Now, enter your pseudo and then click on 
 		code submit
 		br
-		div.form-group
-			input(type='text', class='form-control', id='inputPseudo', placeholder='Pseudo')
-		button(id='send',type="submit", class='btn btn-success') Submit
+		form(role="form",method='get',action="")
+			div.form-group
+				input(type='text', class='form-control', id='inputPseudo', placeholder='Pseudo')
+			button(id='send',type="submit", class='btn btn-success') Submit
 	
 	script(type='text/javascript', src='../js/thegame.js')	
