@@ -1,7 +1,6 @@
 
 function load() {
-var socket = io.connect();
-
+var socket = io.connect(window.location.hostname);
 
 
 
