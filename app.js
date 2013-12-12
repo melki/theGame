@@ -29,7 +29,7 @@ app.use(express.favicon(path.join(__dirname, 'public/images/favicon.ico')));
 app.get('/', routes.index);
 app.get('/index', routes.index);
 app.get('/home', routes.index);
-app.get('/thegame', routes.thegame);
+app.get('/thecubegame', routes.thecubegame);
 app.get('/scores', routes.scores);
 
 var mongoose = require('mongoose');

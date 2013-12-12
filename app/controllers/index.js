@@ -33,7 +33,7 @@ exports.scores = function(req, res){
 	});
 };
 
-exports.thegame = function(req, res){
+exports.thecubegame = function(req, res){
 
-  res.render('thegame', { title: 'theGame' });
+  res.render('thecubegame', { title: 'theCubeGame' });
 };
