@@ -4,7 +4,7 @@
  */
 var express = require('express'),
   routes = require('./app/controllers'),
-  user = require('./app/controllers/user'),
+  admin = require('./app/controllers/admin'),
   db = require('./app/models/db'),
   http = require('http'),
   fs = require('fs'),
@@ -24,13 +24,22 @@ app.use(app.router);
 
 app.use(express.favicon(path.join(__dirname, 'public/images/favicon.ico'))); 
 
-
+var auth = express.basicAuth(function(user, pass, callback) {
+ var result = (user === 'melki' && pass === 'test');
+ callback(null , result);
+});
 
 app.get('/', routes.index);
 app.get('/index', routes.index);
 app.get('/home', routes.index);
+app.get('/psycho', routes.psycho);
 app.get('/thecubegame', routes.thecubegame);
 app.get('/scores', routes.scores);
+app.get('/admin/lvl',auth, admin.lvl);
+app.get('/admin/database',auth, admin.database);
+
+
+
 
 var mongoose = require('mongoose');
 var Scores = mongoose.model('scoreSchema')
@@ -39,6 +48,7 @@ var Scores = mongoose.model('scoreSchema')
 
 var server = http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
+  
 });
 
 var io = require('socket.io').listen(server);
@@ -46,6 +56,15 @@ var io = require('socket.io').listen(server);
 
 io.sockets.on('connection', function (socket) {
 
+
+  socket.on('modificationLvl', function (data)
+    {
+      fs.writeFile(__dirname + "/public/json/lvl.json", data, function(err) {
+      if (err) {
+        throw err;
+      }
+    });
+    });
 
   socket.on('newscore', function (data)
     {

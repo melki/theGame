@@ -1,0 +1,8 @@
+extends layoutA
+block content  
+	#whereItHappens
+		h1 Welcome to the lvl edit pannel   
+			button(id='save', class='btn btn-success') Save
+		textarea(id="content", class="form-control", rows="20") #{content}
+
+		script(type='text/javascript', src='../js/lvl.js')      

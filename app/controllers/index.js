@@ -37,3 +37,8 @@ exports.thecubegame = function(req, res){
 
   res.render('thecubegame', { title: 'theCubeGame' });
 };
+
+exports.psycho = function(req, res){
+
+  res.render('psycho', { title: 'psycho' });
+};

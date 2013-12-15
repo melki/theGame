@@ -1,0 +1,27 @@
+extends layoutA
+block content  
+	#whereItHappens
+		h1 Welcome to the database edit pannel
+		table.table.table-striped
+			thead
+				tr
+					th #
+					th Pseudo
+					th Number of tries
+					th Date
+					th Save
+				
+			tbody
+			- var i = 0
+			each item in data
+				- i+=1
+
+				tr(id="#{i}")
+					td.modifiable #{i} 
+					td.modifiable #{item.pseudo}
+					td.modifiable #{item.tries}
+					td.modifiable #{item.date}
+					td 
+						button(class='btn btn-success save') Save
+
+		script(src="../js/database.js")      

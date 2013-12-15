@@ -1,0 +1,36 @@
+!!! 5
+html(lang='en')
+head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='A hard core game !')
+    meta(name='author', content='@melki')
+    link(rel="icon", href="../images/favicon.ico")
+    script(type='text/javascript', src='../js/jquery.js')
+    title theGame | #{title}
+    script(src='../lib/bootstrap/js/bootstrap.min.js')
+    link(rel='stylesheet', href='../lib/bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', href='../stylesheets/custom.css', type='text/css')
+    script(src='./socket.io/socket.io.js')  
+    script(type='text/javascript', src='../js/scores.js') 
+    body
+    .container
+      .header
+        ul.nav.nav-pills.pull-right
+         - if(title=='lvl')
+            li.active
+              a(href='/admin/lvl') lvl
+          -else
+            li
+              a(href='/lvl') lvl
+          - if(title=='database')
+            li.active
+              a(href='/database') database
+          -else
+            li
+              a(href='/database') database
+        h3.text-muted theGame
+      block content
+
+    

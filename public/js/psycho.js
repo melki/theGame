@@ -24,6 +24,7 @@ var height = canvas.height;
 var lvl = 0;
 var baseSpeed = 10;
 var cube,nbLvl,inJump,i,j,boom=0,play=0,gameEnd=1;
+var doWeChange =0;
 var c1 = new Array();
 var c2 = new Array();
 var speed = new Array();
@@ -31,7 +32,9 @@ var orderLvl = new Array();
 var orderColor = new Array();
 var nbObstacles = new Array();
 var obstacles = new Array();
+var weHaveStart = 0;
 var gravity = new Array();
+var changeBG = 0;
 var sol = new Array();
 var ciel = new Array();
 var stopY = new Array();
@@ -115,6 +118,7 @@ $.getJSON('../json/lvl.json', function(data)
 function animate() 
 {   
     requestAnimFrame(animate);
+    psycho();
     if(stopTheGame==1)
     {    
         if (boom==0)
@@ -122,6 +126,7 @@ function animate()
             if(creation!=1)
                 {
                     creation=1;
+                    weHaveStart=1;
                     createCube(sol[orderLvl[lvl]],c1[orderLvl[orderColor[lvl]]],speed[orderLvl[lvl]]);
                 }
             clearCanvas(ctx);
@@ -385,6 +390,47 @@ function jump()
     
 }
 
+function psycho()
+{
+    doWeChange++;
+  if(doWeChange%5==0)
+  {  
+  if(weHaveStart==0)
+  {
+    if(changeBG==0)
+    {
+        $('body').css('background', '#000');
+        changeBG =1;
+    }
+    else
+    {
+        $('body').css('background', '#fff');
+        changeBG =0;
+    }
+  } 
+  else
+  {
+      if(changeBG==0)
+    {
+        $('body').css('background', c1[orderLvl[orderColor[lvl]]]);
+        changeBG =c1[orderLvl[orderColor[lvl]]];
+        c1[orderLvl[orderColor[lvl]]]=c2[orderLvl[orderColor[lvl]]];
+        c2[orderLvl[orderColor[lvl]]]=changeBG;
+        changeBG=1;
+    }
+    else
+    {
+        changeBG =c1[orderLvl[orderColor[lvl]]];
+        c1[orderLvl[orderColor[lvl]]]=c2[orderLvl[orderColor[lvl]]];
+        c2[orderLvl[orderColor[lvl]]]=changeBG;
+        $('body').css('background', c2[orderLvl[orderColor[lvl]]]);
+        changeBG =0;
+    }
+
+  }     
+  }     
+}
+
 function drawCube(c2)
 {
     ctx.fillStyle = c2[orderLvl[orderColor[lvl]]];
@@ -450,9 +496,6 @@ function keydownControl(e)
         break;
         case 32:
             jump();
-        break;
-        case 83:
-            window.location='/psycho';
         break;
     }
     if(gameEnd!=0)
